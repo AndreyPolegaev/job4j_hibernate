@@ -21,6 +21,8 @@
         <mapping class="hibernate.Model"/>
         <mapping class="hibernatesecond.Author"/>
         <mapping class="hibernatesecond.Book"/>
+        <mapping class="hibernatethird.Mar"/>
+        <mapping class="hibernatethird.Mod"/>
 
 
     </session-factory>
