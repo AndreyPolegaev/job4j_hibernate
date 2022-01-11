@@ -24,7 +24,7 @@
         <mapping class="hibernatethird.Mar"/>
         <mapping class="hibernatethird.Mod"/>
         <mapping class="hibernatefourth.Candidate"/>
-
-
+        <mapping class="hibernatefourth.Vacancy"/>
+        <mapping class="hibernatefourth.Vacancybase"/>
     </session-factory>
 </hibernate-configuration>

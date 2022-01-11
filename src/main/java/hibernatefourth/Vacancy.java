@@ -3,15 +3,16 @@ package hibernatefourth;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "candidate", catalog = "hiber", schema = "h4")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Candidate {
+@Table(name = "vacancy", catalog = "hiber", schema = "h4")
+public class Vacancy {
 
     @Id
     @Column(name = "id")
@@ -21,21 +22,13 @@ public class Candidate {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "experience")
-    private String experience;
-
-    @Column(name = "salary")
-    private Integer salary;
-
-    /** при удалении кандидату, базу вакансий не удалять */
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "vacancybase_id")
+    /** при удалении вакансии, базу вакансий не удалять */
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "vacancyBase_id")
     private Vacancybase vacancybase;
 
-    public Candidate(String name, String experience, Integer salary) {
+    public Vacancy(String name) {
         this.name = name;
-        this.experience = experience;
-        this.salary = salary;
     }
 
     @Override
@@ -46,8 +39,8 @@ public class Candidate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Candidate candidate = (Candidate) o;
-        return Objects.equals(id, candidate.id);
+        Vacancy vacancy = (Vacancy) o;
+        return Objects.equals(id, vacancy.id);
     }
 
     @Override
@@ -57,12 +50,9 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return "Candidate{"
+        return "Vacancy{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", experience='" + experience + '\''
-                + ", salary=" + salary
                 + '}';
     }
-
 }
