@@ -25,12 +25,12 @@ public class Mark {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Model> models = new ArrayList<>();
+
     public Mark(String name) {
         this.name = name;
     }
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Model> models = new ArrayList<>();
 
     public void addModel(Model model) {
         models.add(model);
